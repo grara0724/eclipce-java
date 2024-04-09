@@ -8,5 +8,6 @@ public class HelloJava {
 		System.out.println("Javaの世界へようこそ");
 		System.out.println("頑張りましょう！");
 		System.out.println("今日からJavaを頑張ります！");
+		System.out.println("こんばんは");
 	}
 }
