@@ -1,4 +1,3 @@
-
 public class Pr040908 {
 
 	public static void main(String[] args) {
