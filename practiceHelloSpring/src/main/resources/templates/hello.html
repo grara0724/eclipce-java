@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello!</title>
+</head>
+<body>
+	<h1>ようこそ</h1>
+ <p th:text="${memo}"></p>
+<a href="/hello?msg=おちんちん！">クエストリングによるGETパラメータ</a>
+
+<!-- from action=入力内容の送信先,入力内容の送信方法-->
+<h3>ファームによるGETぱらめーた</h3>
+<form action="/hello" method="get">
+	<input type="text" name="msg">
+	<button>送信</button>
+	</form>
+	
+<!-- from action=入力内容の送信先,入力内容の送信方法-->
+<h3>ファームによるPOSTぱらめーた</h3>
+<form action="/hello" method="post">
+	<input type="text" name="msg">
+	<button>送信</button>
+	
+</form>
+
+</body>
+</html>
