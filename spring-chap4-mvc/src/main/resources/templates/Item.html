@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Item</title>
+</head>
+
+<body>
+	<h1>商品</h1>
+	<form action="/item" method="post">
+		<input type="text" name="name" placeholder="商品名">
+		<input type="number" name="price" placeholder="価格">
+		<button>送信</button>
+	</form>
+
+	<th:block th:if="${item}">
+		<h2>次の商品を登録しました</h2>
+		[[${item.name}]]:[[${item.price}]]円
+	</th:block>
+</body>
+
+</html>
