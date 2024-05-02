@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品詳細確認</title>
+</head>
+<body>
+	<h1>商品詳細確認</h1>
+
+	<p>商品名:[[${name}]]</p>
+	<p>価格:[[${price}]]</p>
+	<p>カテゴリー:
+		<span th:if="${categoryId}==1">本</span>
+		<span th:if="${categoryId}==2">DVD</span>
+		<span th:if="${categoryId}==3">ゲーム</span>		
+	</p>
+	<p>ジャンル:
+		<span th:each="genre:${genreList}" th:text="|${genre},|"></span>
+	</p>
+	<p>発売日:[[${releaseDate}]]</p>
+</body>
+</html>

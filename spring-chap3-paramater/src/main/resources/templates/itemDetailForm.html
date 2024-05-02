@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品詳細登録</title>
+</head>
+
+<body>
+	<h1>商品詳細登録</h1>
+	<form action="/item/detail" method="post">
+		<input type="text" name="name" placeholder="商品名"><br>
+		<input type="number" name="price" placeholder="価格"><br>
+		カテゴリー:
+		<select name="categoryId">
+			<option value="1">本</option>
+			<option value="2">DVD</option>
+			<option value="3">ゲーム</option>
+		</select><br>
+		ジャンル:
+		<input type="checkbox" name="genre" value="コメディ">コメディ
+		<input type="checkbox" name="genre" value="アクション">アクション
+		<input type="checkbox" name="genre" value="SF">SF
+		<br>
+		発売日:
+		<input type="date" name="releaseDate"><br>
+		<button>送信</button>
+	</form>
+</body>
+
+</html>

@@ -20,7 +20,7 @@ public class HelloController {
 	}
 
 	@PostMapping("/hello")
-	public String helloByPost(@RequestParam("msg") String message, Model model) {
+	public String helloByPost(@RequestParam(name = "msg") String message, Model model) {
 		model.addAttribute("memo", message);
 		return "helloPost";
 	}
