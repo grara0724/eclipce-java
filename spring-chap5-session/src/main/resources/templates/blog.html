@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>日記</title>
+</head>
+
+<body>
+	<h1>日記</h1>
+	<p>こんにちは、[[${@account.name}]]さん</p>
+
+	<form action="blog" method="post">
+		<p>
+			<input type="text" name="tittle" placeholder="タイトル">
+		</p>
+		<p>
+			<textarea name="content" placeholder="内容"></textarea>
+		</p>
+		<p>
+			<button>投稿する</button>
+		</p>
+	</form>
+<!--	<hr>でラインを引く-->
+	<hr>
+	<table style="width: 100%;" border="1">
+		<tr>
+			<th>日時</th>
+			<th>タイトル</th>
+			<th>書き込み</th>
+		</tr>
+	</table>
+	<a href="/logout">すべてクリアする</a>
+</body>
+
+</html>
