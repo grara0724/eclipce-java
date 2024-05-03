@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>RSP</title>
+</head>
+
+<body>
+	<h1>じゃんけんゲーム</h1>
+	<p>最初はグー！じゃんけん...</p>
+
+	<form action="/RSP" method="post">
+		<input type="hidden" name="myHand" value="0">
+		<button>グー</button>
+	</form>
+
+	<form action="/RSP" method="post">
+		<input type="hidden" name="myHand" value="1">
+		<button>チョキ</button>
+	</form>
+
+	<form action="/RSP" method="post">
+		<input type="hidden" name="myHand" value="2">
+		<button>パー</button>
+	</form>
+
+	<p>あなたは
+		<span th:if="	${myHand}==0">グー</span>
+		<span th:if="	${myHand}==1">チョキ</span>
+		<span th:if="	${myHand}==2">パー</span>
+	</p>
+	<p>相手は
+	<span th:if="	${comHand}==0">グー</span>
+	<span th:if="	${comHand}==1">チョキ</span>
+	<span th:if="	${comHand}==2">パー</span>
+	</p>
+	<p>あなたの[[${result}]]</p>
+
+
+</body>
+
+</html>
