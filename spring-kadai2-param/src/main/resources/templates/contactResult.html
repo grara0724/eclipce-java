@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>予約内容</title>
+</head>
+
+<body>
+
+	<h1 th:if="${how2watch} == local">やっぱり現地観戦ですよね！</h1>
+	<h1 th:if="${how2watch} == online">家でゆっくり観戦したいですよね！</h1>
+
+	<p>以下の内容にて受け付けました</p>
+
+	<table border="1">
+		<tr>
+			<th>推しチーム</th>
+			<td>
+				<span th:each="team:${teamList}" th:text=|"${team}",|></span>
+			</td>
+		</tr>
+		<tr>
+			<th>詳細内容</th>
+			<td>
+				[[${detail}]]
+			</td>
+		</tr>
+		<tr>
+			<th>観戦希望日</th>
+			<td>
+				[[${dueDate}]]
+			</td>
+		</tr>
+		<tr>
+			<th>お名前[必須]</th>
+			<td>
+				[[${yourName}]]
+			</td>
+		</tr>
+		<tr>
+			<th>メールアドレス[必須]</th>
+			<td>
+				[[${yourEmail}]]
+			</td>
+		</tr>
+	</table>
+
+<!--	選んだ推しチームの詳細ページに飛ぶリンクの作成-->
+	<h3>チーム詳細はこちら</h3>
+	<ul>
+		<li th:each="team:${teamList}"><a th:href="|/contact/${team}|" th:text="${team}" name="team"></a></li>
+	</ul>
+</body>
+
+</html>

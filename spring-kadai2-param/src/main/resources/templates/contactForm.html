@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>観戦申し込み</title>
+</head>
+
+<body>
+	<h1>観戦申し込み</h1>
+
+	<th:block th:if="${errorMsgs}">
+		<ul th:each="msg:${errorMsgs}">
+			<li th:text="${msg}" style="color:red;"></li>
+		</ul>
+	</th:block>
+
+	<form action="/contact" method="post">
+		<table border="1">
+			<tr>
+				<th>観戦方法</th>
+				<td>
+					<input type="radio" name="how2watch" value="local">現地観戦<br>
+					<input type="radio" name="how2watch" value="online">オンライン観戦
+				</td>
+			</tr>
+			<tr>
+				<th>推しチーム[必須]</th>
+				<td>
+					<input type="checkbox" name="teamList" value="LFC">Liverpool<br>
+					<input type="checkbox" name="teamList" value="ARS">Arsenal<br>
+					<input type="checkbox" name="teamList" value="MCI">Manchester City
+				</td>
+			</tr>
+			<tr>
+				<th>その他ご要望</th>
+				<td>
+					<textarea name="detail" rows="4" cols="30"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>観戦希望日</th>
+				<td>
+					<input type="date" name="dueDate">
+				</td>
+			</tr>
+			<tr>
+				<th>お名前[必須]</th>
+				<td>
+					<input type="text" name="yourName">
+				</td>
+			</tr>
+			<tr>
+				<th>メールアドレス[必須]</th>
+				<td>
+					<input type="text" name="yourEmail">
+				</td>
+			</tr>
+		</table>
+		<button>送信</button>
+	</form>
+</body>
+
+</html>
