@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>計算</title>
+</head>
+
+<body>
+	<h1>計算</h1>
+	<form action="add_num" method="get">
+		<input type="number" name="num1">+
+		<input type="number" name="num2">
+		<button>計算</button>
+	</form>
+	<p>結果:
+		<th:block th:if="${sum}">
+			[[${sum}]]
+		</th:block>
+	</p>
+</body>
+
+</html>

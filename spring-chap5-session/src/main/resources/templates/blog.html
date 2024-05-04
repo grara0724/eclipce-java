@@ -18,8 +18,17 @@
 			<textarea name="content" placeholder="内容"></textarea>
 		</p>
 		<p>
+			<select name="feeling">
+				<option value="good">元気です</option>
+				<option value="bad">元気じゃないです</option>
+			</select>
+		</p>
+		<p>
 			<button>投稿する</button>
 		</p>
+		<th:block th:if="${boolean}">
+			<p>タイトルと内容を記入してください</p>
+		</th:block>
 	</form>
 <!--	<hr>でラインを引く-->
 	<hr>
@@ -27,12 +36,16 @@
 		<tr>
 			<th>日時</th>
 			<th>タイトル</th>
+			<th>気分</th>
 			<th>書き込み</th>
 		</tr>
 		<tr th:each="post:${@postList.posts}">
 			<td>[[${post.createdAt}]]</td>
 			<td>[[${post.title}]]</td>
+			<td>[[${post.feeling}]]</td>
 			<td th:utext="${post.content}"></td>
+>
+
 		</tr>
 	</table>
 	<a href="/logout">すべてクリアする</a>

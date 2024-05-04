@@ -22,15 +22,19 @@ public class RandomStringController {
 		return "random";
 	}
 
-	//	データの受け渡しをする
+	//		データの受け渡しをする
 	@PostMapping("/random")
 	public String generate(
-			//Randomhtmlから送られてきた値を受け取ってserviceクラスで処理する役割
+			//random.htmlから送られてきた値を受け取ってserviceクラスで処理する役割
 			@RequestParam("charLength") int charLength,
-			@RequestParam(name = "withNumber", defaultValue = "false") boolean withNumber,
+			@RequestParam("generateNum") int generateNum,
+
+			//ここを@RequestParam("randomStyle") int randomStyle,にすると400エラーのリクエストパラメータ不足になる
+			@RequestParam(name = "randomStyle", defaultValue = "1") int randomStyle,
 			Model model) {
-		List<String> list = service.generate(charLength, withNumber);
-		//そうして作られたlistをrandListとして渡す
+
+		List<String> list = service.generate(charLength, generateNum, randomStyle);
+		//そうして作られたlistをrandListとしてrandom.html渡す
 		model.addAttribute("randList", list);
 
 		return "random";

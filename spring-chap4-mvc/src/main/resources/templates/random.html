@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>ランダム文字列ジェネレータ</title>
-</head>
+	<meta charset="UTF-8">
+	<title>ランダム文字列ジェネレータ</title>
+
 <body>
 	<h1>ランダム文字列ジェネレータ</h1>
-<form action="/random" method="post">
-<p>
-	<select name="charLength">
-		<option th:each="i : ${#numbers.sequence(5,10)}"
-		th:value="${i}" th:text="|${i}文字|"></option>
-	</select>
-	<input type="checkbox" name="withNumber" value="true">数字を含める
-</p>	
-<p>
-	<button>作成する</button>
-</p>
-</form>
-<hr>
-<p th:each="str:${randList}" th:text="${str}"></p>
+	<form action="/random" method="post">
+		<p>
+			<select name="charLength">
+				<option th:each="i : ${#numbers.sequence(5,10)}" th:value="${i}" th:text="|${i}文字|"></option>
+			</select>
+			<select name="generateNum">
+				<option th:each="i : ${#numbers.sequence(5,10)}" th:value="${i}" th:text="|${i}個|"></option>
+			</select>
+			<input type="radio" checked name="randomStyle" value="1">数字を含める
+			<input type="radio" name="randomStyle" value="2">数字のみ
+			<input type="radio" name="randomStyle" value="3">文字のみ
+		</p>
+		<p>
+			<button>作成する</button>
+		</p>
+	</form>
+	<hr>
+	<p th:each="str:${randList}" th:text="${str}"></p>
 </body>
+
 </html>

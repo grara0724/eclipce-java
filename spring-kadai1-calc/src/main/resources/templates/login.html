@@ -8,11 +8,12 @@
 
 <body>
 	<form action="/login" method="post">
-		<input type="text" name="name" placeholder="名前">
-		<button>送信</button>
+		ユーザID:<input type="text" name="userId"><br>
+		パスワード:<input type="text" name="password"><br>
+		<button>ログイン</button><br>
 	</form>
 	<th:block th:if="${boolean}">
-		<p>ユーザーIDが違います	</p>
+		ユーザIDが一致しませんでした
 	</th:block>
 </body>
 
