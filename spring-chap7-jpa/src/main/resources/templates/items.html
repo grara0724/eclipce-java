@@ -1,32 +1,191 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--	<meta charset="UTF-8">-->
+<!--	<title>商品一覧</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--	<h1>商品一覧</h1>-->
+
+<!--	<a href="/items">全商品</a>-->
+<!--	<a th:each="category:${categories}" th:href="@{/items(categoryId=${category.id})}" th:text="${category.name}"-->
+<!--		style="margin-right: 5px;"></a>-->
+
+<!--	<table border="1">-->
+<!--		<tr>-->
+<!--			<th>商品ID</th>-->
+<!--			<th>商品名</th>-->
+<!--			<th>値段<a href="#" onclick="addasc(); return false;">▲</a><a href="#" onclick="adddesc(); return false;">▼</a></th>-->
+<!--			<th>更新</th>-->
+<!--			<th>削除</th>-->
+<!--		</tr>-->
+
+<!--		<script>-->
+<!--			function addasc() {-->
+<!--				// 現在のURLを取得-->
+<!--				var currentUrl = window.location.href;-->
+
+<!--				// 新しいパラメータ-->
+<!--				var newParam = 'sort=asc';-->
+
+<!--				// パラメータがすでに存在する場合、追加するパラメータと結合-->
+
+<!--				if (currentUrl.indexOf(newParam) == -1) {-->
+<!--					if (currentUrl.indexOf('?') !== -1) {-->
+<!--						currentUrl += '&' + newParam;-->
+<!--					} else {-->
+<!--						currentUrl += '?' + newParam;-->
+<!--					}-->
+<!--				}-->
+<!--				// リダイレクト-->
+<!--				window.location.href = currentUrl;-->
+<!--			}-->
+			
+<!--		</script>-->
+<!--		<script>-->
+<!--			function adddesc() {-->
+<!--				// 現在のURLを取得-->
+<!--				var currentUrl = window.location.href;-->
+
+<!--				// 新しいパラメータ-->
+<!--				var newParam = 'sort=desc';-->
+
+<!--				// パラメータがすでに存在する場合、追加するパラメータと結合-->
+
+<!--				if (currentUrl.indexOf(newParam) == -1) {-->
+<!--					if (currentUrl.indexOf('?') !== -1) {-->
+<!--						currentUrl += '&' + newParam;-->
+<!--					} else {-->
+<!--						currentUrl += '?' + newParam;-->
+<!--					}-->
+<!--				}-->
+<!--				// リダイレクト-->
+<!--				window.location.href = currentUrl;-->
+<!--			}-->
+<!--		</script>-->
+<!--		<tr th:each="item:${items}">-->
+<!--			<td th:text="${item.id}" }></td>-->
+<!--			<td th:text="${item.name}" }></td>-->
+<!--			<td th:text="${item.price}" }></td>-->
+<!--			<td>-->
+<!--				<form th:action="@{/items/{itemId}/edit(itemId=${item.id})}" method="get">-->
+<!--					<button>更新</button>-->
+<!--				</form>-->
+<!--			</td>-->
+<!--			<td>-->
+<!--				<form th:action="@{/items/{itemId}/delete(itemId=${item.id})}" method="post">-->
+<!--					<button>削除</button>-->
+<!--				</form>-->
+<!--			</td>-->
+<!--		</tr>-->
+<!--	</table>-->
+<!--	<a href="/items/add">新規登録</a>-->
+<!--</body><br>-->
+<!--<form action="/items/search">-->
+<!--	<span>商品名検索:</span><input type="text" name="name" placeholder="商品名">-->
+<!--	<button>検索</button>-->
+<!--</form>-->
+<!--<block th:if="${memos}" style="color:red;" th:each="memo:${memos}">-->
+<!--	<span th:text="${memo}"></span><br>-->
+<!--</block>-->
+
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<title>商品一覧</title>
+    <meta charset="UTF-8">
+    <title>商品一覧</title>
 </head>
 
 <body>
-	<h1>商品一覧</h1>
+    <h1>商品一覧</h1>
 
-	<a href="/items">全商品</a>
-	<a th:each="category:${categories}" 
-	   th:href="@{/items(categoryId=${category.id})}"
-	   th:text="${category.name}"
-	   style="margin-right: 5px;"></a>
+    <a href="/items">全商品</a>
+    <a th:each="category:${categories}" th:href="@{/items(categoryId=${category.id})}" th:text="${category.name}"
+        style="margin-right: 5px;"></a>
 
-	<table border="1">
-		<tr>
-			<th>商品ID</th>
-			<th>商品名</th>
-			<th>値段</th>
-		</tr>
-		<tr th:each="item:${items}">
-			<td th:text="${item.id}" }></td>
-			<td th:text="${item.name}" }></td>
-			<td th:text="${item.price}" }></td>
-		</tr>
-	</table>
+    <table border="1">
+        <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>値段
+                <a href="#" onclick="addSort('asc'); return false;">▲</a>
+                <a href="#" onclick="addSort('desc'); return false;">▼</a>
+            </th>
+            <th>更新</th>
+            <th>削除</th>
+        </tr>
+
+        <tr th:each="item:${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td>
+                <form th:action="@{/items/{itemId}/edit(itemId=${item.id})}" method="get">
+                    <button>更新</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/items/{itemId}/delete(itemId=${item.id})}" method="post">
+                    <button>削除</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a href="/items/add">新規登録</a>
+
+    <script>
+        function addSort(sortType) {
+            // 現在のURLを取得
+            var currentUrl = window.location.href;
+
+            // 既存のsortパラメータを削除
+            currentUrl = removeURLParameter(currentUrl, "sort");
+
+            // 新しいsortパラメータを追加
+            currentUrl += (currentUrl.indexOf('?') !== -1 ? '&' : '?') + 'sort=' + sortType;
+
+            // リダイレクト
+            window.location.href = currentUrl;
+        }
+
+        function removeURLParameter(url, parameter) {
+            // URLからパラメータを削除する関数
+            var urlparts = url.split('?');
+
+            if (urlparts.length >= 2) {
+                var prefix = encodeURIComponent(parameter) + '=';
+                var pars = urlparts[1].split(/[&;]/g);
+
+                for (var i = pars.length; i-- > 0;) {
+                    if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                        pars.splice(i, 1);
+                    }
+                }
+
+                url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+                return url;
+            } else {
+                return url;
+            }
+        }
+    </script>
 </body>
+
+<br>
+
+<form action="/items/search">
+    <span>商品名検索:</span><input type="text" name="name" placeholder="商品名">
+    <button>検索</button>
+</form>
+
+<block th:if="${memos}" style="color:red;" th:each="memo:${memos}">
+    <span th:text="${memo}"></span><br>
+</block>
 
 </html>

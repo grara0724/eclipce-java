@@ -11,4 +11,15 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	//カテゴリーIDによる検索
 	//SELECT : FROM items WHERE category_id=?
 	List<Item> findByCategoryId(Integer categoryId);
+
+	List<Item> findByCategoryIdOrderByPriceAsc(Integer categoryId);
+
+	List<Item> findByCategoryIdOrderByPriceDesc(Integer categoryId);
+
+	List<Item> findByNameContaining(String name);
+
+	List<Item> findAllByOrderByPriceAsc();
+
+	List<Item> findAllByOrderByPriceDesc();
+
 }
