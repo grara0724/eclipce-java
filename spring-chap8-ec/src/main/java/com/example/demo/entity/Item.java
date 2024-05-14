@@ -20,14 +20,14 @@ public class Item {
 	private String name;
 	private Integer price;
 	@Transient
-	private Integer quantinty;
+	private Integer quantity;
 
-	public Integer getQuantinty() {
-		return quantinty;
+	public Integer getQuantity() {
+		return quantity;
 	}
 
-	public void setQuantinty(Integer quantinty) {
-		this.quantinty = quantinty;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
 	public Integer getId() {

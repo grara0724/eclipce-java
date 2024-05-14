@@ -1,12 +1,12 @@
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS items;
-DROP TABLE IF EXISTS cusutomers;
+DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS order_details;
 
-CREATE TABLE  categories(
- id SERIAL PRIMARY KEY,
- name TEXT
+CREATE TABLE categories(
+id SERIAL PRIMARY KEY,
+name TEXT
 );
 
 CREATE TABLE  items(
@@ -16,7 +16,7 @@ name TEXT,
 price INTEGER
 );
 
-CREATE TABLE  cusutomers(
+CREATE TABLE customers(
 id SERIAL PRIMARY KEY,
 name TEXT,
 addres TEXT,
@@ -24,15 +24,15 @@ tel TEXT,
 email TEXT
 );
 
-CREATE TABLE  orders(
+CREATE TABLE orders(
 id SERIAL PRIMARY KEY,
 customer_id INTEGER,
-oredered DATE,
+oredered_on DATE,
 total_price INTEGER
 );
 
 CREATE TABLE  order_details(
-id SERIAL PRIMARY KEY
+id SERIAL PRIMARY KEY,
 order_id INTEGER,
 item_id INTEGER,
 quantity INTEGER
