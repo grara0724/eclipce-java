@@ -38,6 +38,7 @@ public class ItemController {
 			@RequestParam(name = "sort", defaultValue = "") String sort,
 			Model model) {
 		List<Category> categoryList = categoryRepository.findAll();
+		List<Item> allItemsList = itemRepository.findAll();
 		model.addAttribute("categories", categoryList);
 
 		List<Item> itemList = null;
@@ -55,6 +56,7 @@ public class ItemController {
 			itemList = itemRepository.findByCategoryIdOrderByPriceDesc(categoryId);
 		}
 		model.addAttribute("items", itemList);
+		model.addAttribute("allItems", allItemsList);
 		return "items";
 	}
 
